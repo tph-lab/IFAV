@@ -1,0 +1,494 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>iFav首页</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/timg.jpg" type="image/png">
+
+    <link rel="stylesheet" href="vendor/enjoyhint/enjoyhint.css">
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="dist/css/app.min.css">
+
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+<div id="ifavm">
+<div class="container">
+    <div class="row clearfix" >
+        <div class="col-md-12 column">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="#">iFav</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" v-model="searchData" />
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+
+
+
+
+
+
+
+
+
+                            <!--                            <form action="/user/uploadPic" method="post" enctype="multipart/form-data">-->
+                            <!--                                <table>-->
+                            <!--                                    <tr>-->
+                            <!--                                        <td width="100" align="right">图片：</td>-->
+                            <!--                                        <td><input type="file" name="multipartFile"/></td>-->
+                            <!--                                    </tr>-->
+                            <!--                                    <tr>-->
+                            <!--                                        <td colspan="2"><input type="submit"/></td>-->
+                            <!--                                    </tr>-->
+                            <!--                                </table>-->
+                            <!--                            </form>-->
+
+
+
+
+
+                            <img href="#" data-toggle="dropdown"  id="signal" :src="avator" class="img-circle">
+
+                            <ul class="dropdown-menu">
+                                <li class="list-inline-item" data-toggle="tooltip" title="New group">
+                                    <a class="btn btn-outline-light" href="#" data-toggle="modal" data-target="#newGroup">
+                                        添加收藏
+
+                                    </a>
+                                </li>
+                                <li class="list-inline-item" data-toggle="tooltip" title="New group">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <a class="btn btn-outline-light" href="#" data-toggle="modal">
+                                        修改头像
+                                        <!--                                        <form action="/user/uploadPic" method="post" enctype="multipart/form-data">-->
+                                        <!--                                            <input type="file" name="multipartFile" />-->
+                                        <!--                                           <button>确定</button>-->
+
+                                        <!--                                        </form>-->
+
+
+
+
+                                        <form action="#" method="post" enctype="multipart/form-data">
+                                           <input  id="file1" id="" name="file1" type="file" @change = "Upload" />
+                                               <!--     <button>确定</button>-->
+
+
+                                        </form>
+                                        <!--当元素的值发生改变时，会发生 change 事件。-->
+
+
+
+
+                                    </a>
+                                </li>
+
+                                <li class="list-inline-item" data-toggle="tooltip" title="New group">
+                                    <a class="btn btn-outline-light"  @click="loginout" href="#" data-toggle="modal" data-target="#newGroup">
+                                        退出登录
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li>
+                            <a v-if="muid!=null"> {{uName}}，欢迎使用IFAV</a>
+                            <a v-else href="./login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a>
+                        </li>
+                        <li>
+                            <a v-if="muid!=null"></a>
+                            <a v-else href="./register.html"><span class="glyphicon glyphicon-user"></span> 注册</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <ul class="breadcrumb" data-parent="#accordion">
+<!--                    <li>-->
+<!--                        <a href="recommend.html" class="active">推荐收藏</a>-->
+<!--                    </li>-->
+                    <li>
+                        <a href="#">我的收藏</a>
+                    </li>
+                    <li>
+                        <a href="#">2020</a>
+                    </li>
+                    <li class="active">十二月</li>
+                    <li class="active">{{province}}{{city}}</li>
+                    <li class="active">气温：{{AirTemperature}}&nbsp;&nbsp;&nbsp;<img class="img_weather" :src="'./weather/'+weatherFutureList[0].p1">&nbsp;<img v-bind:src="'weather/'+weatherFutureList[0].p2" class="img_weather"></li>
+                </ul>
+
+
+
+
+
+                <div data-spy="scroll" class="nav-tabs" data-target="#navbar-example" data-offset="0" style="height:560px;overflow:auto; position: relative;">
+                    <div  id="div" v-for="item in Newitems"   >
+
+                        <a class="btn11" href="#" id="btn11" >
+                            <span class="glyphicon glyphicon-remove"  @click="dele(item.mid)" style="top: -22px"></span>
+                        </a>
+
+                        <img  style="margin-left: 15px;" v-bind:src="item.pic">
+                        <div id="describe">
+                            <p>{{item.mfdesc}}</p>
+                        </div>
+                        <div id="maintitle">
+                            <a v-bind:href="item.mfurl" target="_blank" id="incoll1">{{item.mfname}}</a>
+                        </div>
+
+                        <div id="starmod">
+                            <input type="checkbox" id="fav-btn" >
+                            <label for="fav-btn" >
+                                <svg id="star" t="1562567183725" class="icon" viewBox="0 0 1100 850" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1976" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200">
+                                    <path d="M956 398.496q-8-23.488-26.496-39.008t-42.496-19.488l-204.992-31.008-92-195.008q-11.008-24-32.992-36.992Q536.032 64 512.032 64t-44.992 12.992q-22.016 12.992-32.992 36.992l-92 195.008-204.992 31.008q-24 4-42.496 19.488t-26.496 39.008-2.496 47.008 22.496 41.504l151.008 154.016-36 218.016q-6.016 40 20 70.496t66.016 30.496q22.016 0 42.016-11.008l180.992-100 180.992 100q20 11.008 42.016 11.008 40 0 66.016-30.496t20-70.496l-36-218.016 151.008-154.016q16.992-18.016 22.496-41.504t-2.496-47.008z" p-id="1977"></path>
+                                </svg>
+                            </label>
+                        </div>
+                    </div>
+
+
+                </div>
+            </nav>
+        </div>
+
+    </div>
+</div>
+
+<!-- 添加收藏 -->
+<div class="modal fade" id="newGroup" tabindex="-1" role="dialog" aria-hidden="true" style="position: absolute;top: 15%;">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" style="position: absolute; margin-top: 1%;"> <i data-feather="plus"></i>
+                    添加收藏
+                </h3>
+                <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="ti-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="group_name" class="col-form-label">收藏名</label>
+                        <div class="input-group">
+                            <input v-model="mfname" type="text" class="form-control" id="group_name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="group_name" class="col-form-label">网址链接</label>
+                        <div class="input-group">
+                            <input v-model="mfurl" type="text" class="form-control" id="group_name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">描述</label>
+                        <textarea v-model="mfdesc" class="form-control" id="description"></textarea>
+                    </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <input type="button"  @click="addFav()" value="点击添加"></input>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="fade" class="box_2"></div>
+</div>
+<footer>
+
+    <center>
+        <p>Copyright © 2020
+            <a target="_blank" href="#">iFav</a>
+        </p>
+    </center>
+
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="vendor/bundle.js"></script>
+<script src="vendor/feather.min.js"></script>
+<script src="vendor/enjoyhint/enjoyhint.min.js"></script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=djANiT0AFeIK2FNLZxY9zvCSliWC3bL6"></script>
+<script type="text/javascript" src="js/axios.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/qs.js"></script>
+<!-- App scripts -->
+<script src="dist/js/app.min.js"></script>
+<!--<script type="text/javascript" src="js/refire.js" ></script>-->
+<!--<script src="layui/layui.js" charset="utf-8"></script>-->
+<script>
+
+
+    // var hash=window.location.hash;
+    // var muid = hash.replace("#", '');
+    var muid = localStorage.getItem("UID");
+    var province=localStorage.getItem("PROVINCE");
+    var city=localStorage.getItem("CITY");
+    var vm = new Vue({
+        el: '#ifavm',
+        data: {
+            searchData:"",
+            province: province,
+            city: city,
+            temperature:"",
+            weatherImage:"",
+            favs:[{name:''}],
+            muid:muid,
+            mfname:null,
+            mfdesc:null,
+            mfurl:null,
+            mid:null,
+            AirTemperature:null,
+            weatherCondition:null,
+            weatherFutureList:null,
+            avator:"",
+            uName:""
+
+        },
+
+
+        //mounted:在模板渲染成html后调用，通常是初始化页面完成后，
+        //再对html的dom节点进行一些需要的操作。
+        mounted() {
+            this.getLocation();
+            this.findByMuid(this.muid);
+            this.findById();
+        },
+        computed:{
+            Newitems: function(){
+                var _this = this;
+                var Newitems = [];
+                if (_this.searchData) {
+                    return _this.favs.filter(function(data) {
+                        return Object.keys(data).some(function(key) {
+                            return String(data[key]).indexOf(_this.searchData) > -1
+                        })
+                    })
+                }
+                console.log(_this.favs);
+                return  _this.favs;
+            }
+        },
+        methods: {
+
+            findById:function(){
+                axios.post("user/selectById",qs.stringify({uid:this.muid})).then((result)=>{
+                    this.avator=result.data.data.uAvator;
+                    this.uName=result.data.data.uName;
+                });
+
+            },
+            Upload(event){
+                var formData = new FormData();
+                formData.append("multipartFile", $("#file1")[0].files[0]);
+                var self=this;
+                $.ajax({
+                    type:'POST',
+                    url:"user/uploadPic",
+                    data:formData,
+                    contentType:false,
+                    processData:false,//这个很有必要，不然不行
+                    dataType:"json",
+                    mimeType:"multipart/form-data",
+                    success:function(data){
+                        console.log(data.user);
+                        self.avator=data.user.uAvator;
+                    }
+                });
+            },
+
+            dele:function(mid) {
+                var self=this;
+                  $.ajax({
+                      type:"DELETE",
+                      url:"/myfav/delete",
+                      data:{mid:mid},
+                      dataType:"json",
+                      success:function(result){
+                          if(result.code==1){
+                              self.findByMuid(self.muid);
+                              alert("取消收藏成功");
+                          }else{
+                              alert(result.data);
+                          }
+                      }
+                  });
+            },
+
+            loginout: function(){
+                alert("感谢你的使用，我们下次见")
+                localStorage.removeItem("UID");
+                window.location.href="login.html";
+            },
+            addFav: function(){
+                var self=this;
+                if(self.mfname==null || self.mfdesc==null || self.mfurl== null){
+                    alert("不能有空白数据！")
+                    return;
+                }
+                $.ajax({
+                    type:"POST",
+                    url:"/myfav/add",
+                    data:{muid:self.muid, mfname:self.mfname, mfurl:self.mfurl, mfdesc:self.mfdesc},
+                    dataType:"json",
+                    success:function(result){
+
+                        if(result.code==1){
+                            alert(result.data);
+                            self.mfurl=null;
+                            self.mfname=null;
+                            self.mfdesc=null;
+                            self.findByMuid(self.muid);
+                        }else{
+
+                            alert("添加失败")
+                        }
+                    }
+                });
+            },
+            //根据mid删除收藏
+            deleteByMid: function(){
+                var self=this;
+                $.ajax({
+                    type:"POST",
+                    url:"/myfav/delete",
+                    data:{mid:this.mid},
+                    dataType:"json",
+                    success:function(result){
+                        if(result.code==1){
+                            alert("取消收藏成功");
+                        }else{
+                            alert(result.data);
+                        }
+                    }
+                })
+            },
+            //获取地理位置
+            getLocation: function() {
+                var self = this;
+                if(self.province!=null && self.city!=null){
+                    $.ajax({
+                        type: "POST",
+                        url: "/weather/getWeather",
+                        data: {
+                            province:self.province,
+                            city:self.city
+                        },
+                        dataType: "json",
+                        success: function(result) {
+                            if(result.code == 1) {
+                                self.weatherCondition=result.data.weatherCondition;
+                                self.AirTemperature=result.data.weatherCondition.AirTemperature;
+                                self.weatherFutureList=result.data.weatherFutureList;
+                                console.log(result.data);
+                            }
+                        }
+                    });
+                    return;
+                }
+                //获取当前城市
+                var geolocation = new BMap.Geolocation();
+                    geolocation.getCurrentPosition(function(r) {
+                    if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+                        var province = r.address.province; //返回当前省份
+                        var city = r.address.city; //返回当前城市
+                        province=province.replace('省','');
+                        city=city.replace('市','');
+                        self.province = province;
+                        self.city = city;
+                        localStorage.setItem("PROVINCE", province);
+                        localStorage.setItem("CITY", city);
+                        console.log(province + "," + city)
+                        $.ajax({
+                            type: "POST",
+                            url: "/weather/getWeather",
+                            data: {
+                                province:self.province,
+                                city:self.city
+                            },
+                            dataType: "json",
+                            success: function(result) {
+                                if(result.code == 1) {
+                                    self.weatherCondition=result.data.weatherCondition;
+                                    self.AirTemperature=result.data.weatherCondition.AirTemperature;
+                                    self.weatherFutureList=result.data.weatherFutureList;
+                                    console.log(result.data);
+                                }
+                            }
+                        });
+                    }
+                    });
+
+
+            },
+            //根据muid查询
+            findByMuid: function(muid){
+                var self=this;
+                if(muid==null){
+                    alert("请先登录！！");
+                    window.location.href="login.html";
+                }
+                $.ajax({
+                    type:"POST",
+                    url:"/myfav/findById",
+                    data:{muid:this.muid},
+                    dataType:"json",
+                    success:function(result){
+                        console.log(result);
+                        if(result.code==1){
+                            self.favs=result.data;
+                            console.log(self.favs)
+                        }else{
+                            alert("请登录");
+                        }
+                    }
+                });
+
+            }
+        }
+    });
+</script>
+</body>
+
+</html>

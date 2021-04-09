@@ -1,0 +1,255 @@
+	
+	.botton{
+		background: cornflowerblue ;
+		width:99%;
+		height: 45px;		
+		border: 25px solid blue;
+		margin:  15px;
+		padding:15px;
+		
+			
+	}
+	p{
+		font-style: italic;
+		font-weight: 700;
+		
+	}
+	.container{
+		width: 100%;
+	}
+	
+	.box_1{
+		display: none;
+		position: absolute;
+		top: 25%;
+		left: 25%;
+		width: 50%;
+		height: 50%;
+		padding: 10px;
+		border: 10px solid blue;
+		background-color: white;
+		z-index: 1002;
+		overflow:auto;
+		
+		
+	}
+	.box_3{
+		display: none;
+		position: absolute;
+		top: 10%;
+		left: 30%;
+		width: 40%;
+		height: 80%;
+		padding: 10px;
+		border: 10px solid blue;
+		background-color: white;
+		z-index: 1002;
+		overflow:auto;
+		
+		
+	}
+	.box_2{
+		display: none;
+		position:absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: black;
+		z-index: 1001;
+		
+		 background: rgba(255, 255, 255, 0.7); 
+	   
+	}
+	.users{
+		width: 50%;
+		margin: 0 auto;
+	}
+	.passes{
+		width: 50%;
+		margin: 0 auto;
+	}
+	.email{
+		width: 50%;
+		margin: 0 auto;
+	}
+	.recode{
+		width: 50%;
+		margin: 0 auto;
+		
+	}
+
+	.inputcode{
+		width:30%;
+		margin-left: 25%;
+		display: block;
+		
+	}
+	
+	#send{
+		margin-left: 200px;
+		margin-top: -56px;
+	}
+	
+	
+	#signal{
+		width: 30px;
+		height: 30px;
+		margin-top: 10px;
+		margin-right: 20px;
+		
+	}
+	
+	
+	#search{
+		width: 40px;
+		height: 20px;
+	
+		margin-left: 20px;
+	}
+	
+	#div{
+		width: 19%;
+		height: 138px;
+		border:1px solid burlywood;
+		display:inline-block;
+		margin: 2px;
+		
+	}	
+	
+	#incoll1{
+		font-style: italic;
+		font-weight: 700;
+		font-size: 14px;
+		color:#545B62;
+		display: block;
+		text-align: center 
+	
+	}
+	#incoll1:hover{
+		font-style: italic;
+		font-weight: 700;
+		font-size: 15px;
+		color:#0071F0;
+		display: block;
+		text-align: center 
+	
+	}
+	#incoll1:active{
+		font-style: italic;
+		font-weight: 700;
+		font-size: 15px;
+		color:#545B62;
+		display: block;
+		text-align: center 
+	
+	}
+	
+	#maintitle{
+		
+		width: 80px;
+		height: 30px;
+		margin-left:5px;
+		margin-top: -40px;
+		
+	}
+	#describe{
+		width: 150px;
+		height: 120px;
+		
+		margin-left: 100px;
+		margin-top: -60px;
+		table-layout:fixed; 
+		word-break:break-all;
+		overflow:hidden; 
+	}
+	#starmod{
+		width: 20px;
+		height: 20px;
+		
+		text-align: center;
+		margin-left: 230px;
+		margin-top: -11px;
+	}
+
+	.img_weather{
+		width: 20px;
+		height: 20px;
+
+		margin-top: -2px;
+	}
+	
+	svg{
+        fill: silver;
+    }
+    
+    @keyframes star{
+        0%{
+            fill: silver;
+           transform: scale(1); 
+        }
+        20%{
+            fill: gold;
+            transform: scale(0); 
+        }
+        30%{
+            transform: scale(1.2); 
+        }
+        40%{
+            transform: scale(1); 
+        }
+        50%{
+            transform: scale(.8); 
+        }
+        75%{
+            transform: scale(1); 
+        }
+        90%{
+            transform: scale(.9); 
+        }
+        100%{
+            fill: gold;
+            transform: scale(1); 
+        }
+    } 
+    
+    /*a:active {color: #0000FF}*/
+    /* 当input控件被选中状态时（点击），动画才执行 */
+    #fav-btn:checked  +label svg{
+        animation: star 1.5s forwards ease-in;
+    }
+    #fav-btn{
+    	display: none;
+    }
+  
+    /*a:active {color: #0000FF}*/
+    /* 当input控件被选中状态时（点击），动画才执行 */
+    /*#fav-btn1:checked  +label svg{
+        animation: star 1.5s forwards ease-in;
+    }*/
+    @keyframes circle{
+        from{
+            transform: scale(0);
+            border-width: 30px;
+        }
+        to{
+            transform: scale(1.3);
+            border-width: 0px;
+        }
+
+    }	
+	#star{
+		width: 20px;
+		height: 20px;
+	}
+	
+	
+	img{
+		width: 30px;
+		height: 30px;
+		margin-top: 40px;
+		margin-left: 10px;
+	}
+	
+	
+		

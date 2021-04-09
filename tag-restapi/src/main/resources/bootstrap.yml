@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: ifav-provider-tag
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:a@localhost:7301/eureka
+  instance:
+    preferIpAddress: true
+    instance-id: ifav-provider-tag_1
+    lease-expiration-duration-in-seconds: 90
+    lease-renewal-interval-in-seconds: 30

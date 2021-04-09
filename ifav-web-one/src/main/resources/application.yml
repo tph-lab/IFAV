@@ -1,0 +1,32 @@
+server:
+  port: 8180
+
+
+spring:
+  cloud:
+    loadbalancer.retry.enabled: true
+  main:
+    allow-bean-definition-overriding: true
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 10000
+ribbon.ConnectTimeout: 250
+ribbon.ReadTimeout: 1000
+ribbon.OkToRetryOnAllOperations: true
+ribbon.MaxAutoRetriesNextServer: 2
+ribbon.MaxAutoRetries: 1
+
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:a@localhost:7301/eureka
+  instance:
+    preferIpAddress: true
+    instance-id: ifav-web-1
+    lease-expiration-duration-in-seconds: 90
+    lease-renewal-interval-in-seconds: 30
+
+
+feign:
+  httpclient:
+    connection-timeout: 30000

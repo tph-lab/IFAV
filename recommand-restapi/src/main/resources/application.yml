@@ -1,0 +1,52 @@
+server:
+  port: 9993
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+mapper:
+  identity: MYSQL
+logging:
+  level:
+    com.yc.ifav: debug
+
+
+spring:
+  security:
+    user:
+      name: admin
+      password: a
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://123.57.20.138:3306/db_ifav?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Hongkong
+    username: root
+    password: wgf123lxl
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,log4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+info:
+  app.name: IFAV-MYFAV
+  company.name: yc
+  build.artifactId: $project.artifactId$
+  build.modelVersion: $project.modelVersion$
+  version: $project.version$
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

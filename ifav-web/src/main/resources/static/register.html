@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iFav注册</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/timg.jpg" type="image/png">
+
+
+    <!-- Bundle Styles -->
+    <link rel="stylesheet" href="./vendor/bundle.css">
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="./dist/css/app.min.css">
+</head>
+<body class="form-membership">
+
+<div class="form-wrapper" id="register">
+
+    <!-- logo -->
+    <div class="logo">
+        <h2>iFav</h2>
+    </div>
+    <!-- ./ logo -->
+
+    <h5>注册账号</h5>
+
+    <!-- form -->
+    <form>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="昵称" v-model="uName" required>
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" placeholder="邮箱" v-model="uEmail" required>
+            <input type="button" style="width: 120px" @click="getVcode();" value="获取邮箱验证码"></input>
+
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="验证码" v-model="vkey" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="密码" v-model="uPwd" required>
+
+        </div>
+        <input type="button" style="width: 45px" @click="register();" value="注册"></input>
+
+        <hr>
+        <a href="login.html" class="btn btn-outline-light btn-sm">登录</a>
+        <a href="index.html" class="btn btn-outline-light btn-sm">返回首页</a>
+    </form>
+    <!-- ./ form -->
+
+</div>
+
+<!-- Bundle -->
+<script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+<script src="./vendor/bundle.js"></script>
+<script src="./vendor/feather.min.js"></script>
+<script src="js/jquery-3.4.1.min.js"></script>
+
+<script src="js/vue.js"></script>
+<script src="js/axios.js"></script>
+<script src="/js/qs.js"></script>
+
+<!-- App scripts -->
+<script src="./dist/js/app.min.js"></script>
+
+
+<script>
+
+    let vm =new Vue({
+        el: "#register",
+        data: {
+            uName: "",
+            uEmail: "",
+            uPwd: "",
+            vkey: ""
+        },
+        methods: {
+            getVcode: function () {
+                axios.post("/user/vcode", qs.stringify({uEmail: this.uEmail}))
+                    .then((result) => {
+                        alert('验证码已发送......')
+                    });
+
+            },
+
+            register: function () {
+                axios.post("/user/register", qs.stringify({uPwd: this.uPwd, uName: this.uName, vkey: this.vkey}))
+                    .then((result) => {
+                        console.log(result.data);
+                        if (result.data.code == 1) {
+                            alert('用户注册成功，即将跳转登录界面.......')
+                            location.href = 'login.html';
+                        } else {
+                            alert('邮箱已注册，注册失败......')
+                        }
+                    });
+
+            }
+        }
+    })
+
+
+
+</script>
+</body>
+</html>

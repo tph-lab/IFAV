@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iFav登录</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/timg.jpg" type="image/png">
+
+
+    <!-- Bundle Styles -->
+    <link rel="stylesheet" href="./vendor/bundle.css">
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="./dist/css/app.min.css">
+</head>
+<body class="form-membership">
+
+<div class="form-wrapper" id="login">
+
+
+    <div class="logo">
+        <h2>iFav</h2>
+    </div>
+
+    <h5>登录</h5>
+        <div class="form-group">
+            <input v-model="user" type="text"  class="form-control" placeholder="用户名或邮箱" required autofocus>
+        </div>
+        <div class="form-group">
+            <input type="password" v-model="uPwd" class="form-control" placeholder="密码" required>
+        </div>
+        <div class="form-group d-flex justify-content-between">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" checked="" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">记住我</label>
+            </div>
+            <a href="reset-password.html">重置密码</a>
+        </div>
+     <button  @click="login()">登录</button><!--   使用了button之后，就不起作用了
+        <button></button>定义的是按钮，当用在form标签中相当于 <input type="submit"/> 提交按钮-->
+    <!--<input type="button" @click="login()" width="100px">登录</input>-->
+        <hr>
+        <a href="register.html" class="btn btn-outline-light btn-sm">注册</a>
+        <a href="index.html" class="btn btn-outline-light btn-sm">返回首页</a>
+
+</div>
+
+
+<script src="js/jquery-3.4.1.min.js"></script>
+
+<script src="js/vue.js"></script>
+<script src="js/axios.js"></script>
+<script src="/js/qs.js"></script>
+
+<script>
+    let vm =new Vue({
+        el:"#login",
+        data:{
+            user:"",
+            uEmail:"",
+            uPwd:"",
+            uName:"",
+            obj:{}
+        },
+        methods:{
+            login:function(){
+
+                if(this.user.endsWith('@qq.com')){
+                    this.uEmail=this.user;
+                }else{
+                    this.uName=this.user;
+                }
+
+                axios.post("/user/login",qs.stringify({uName: this.uName,uEmail:this.uEmail,uPwd:this.uPwd})).then((result)=>{
+                    console.log(result.data);
+                    if(result.data.code==1){
+                        console.log(result.data);
+                        //////////////////////
+                        localStorage.removeItem("PROVINCE");
+                        localStorage.removeItem("CITY");
+                        localStorage.setItem("UID", result.data.data.uId);
+                        window.location.href='index.html';
+                    }else{
+                        alert("用户名或邮件或密码错误！！！！！" );
+                    }
+                });
+
+
+            }
+        }
+
+    });
+
+
+
+
+</script>
+</body>
+</html>

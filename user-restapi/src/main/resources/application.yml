@@ -1,0 +1,86 @@
+server:
+  port: 9995
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+mapper:
+  identity: MYSQL
+
+logging:
+  level:
+    com.yc.ifav: debug
+mail:
+  fromMail:
+    addr: 2378868011@qq.com
+
+
+
+
+spring:
+  mail:
+    host: smtp.qq.com
+    username: 2378868011@qq.com
+    password: wpxusoncoctaecaf
+    default-encoding: UTF-8
+
+
+
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://123.57.20.138:3306/db_ifav?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Hongkong
+    username: root
+    password: wgf123lxl
+
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+
+    maxWait: 60000
+
+    timeBetweenEvictionRunsMillis: 60000
+
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+
+    filters: stat,wall,log4j
+
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+info:
+  app.name:  ifav-provider-reg
+  company.name: yc
+  build.artifactId: $project.artifactId$
+  build.modelVersion: $project.modelVersion$
+  version: $project.version$
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601
+  thumb-image:
+    width: 150
+    height: 150
+  tracker-list:
+    - 120.26.177.155:22122
+
+spring.jmx.enabled: false
+
+file.path.head: http://120.26.177.155/

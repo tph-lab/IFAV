@@ -1,0 +1,26 @@
+server:
+ port: 9996
+
+logging:
+ level:
+  com.yc.ifav: debug
+
+
+spring:
+ security:
+  user:
+   name: admin
+   password: a
+
+info:
+  app.name: IFAV-WEATHER
+  company.name: yc
+  build.artifactId: $project.artifactId$
+  build.modelVersion: $project.modelVersion$
+  version: $project.version$
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
